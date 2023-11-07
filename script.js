@@ -32,15 +32,23 @@ console.log(name(5)(2));
 // Якщо користувач вводить більше ста, текст або цикл закінчує всі ітерації,
 // то функція виводить в консоль останній введення користувача і завершує функцію.
 function inputNumber() {
+    let lastInput;
     for (let i = 0; i<10; i++) {
         const num = prompt('Enter a number greater than 100');
-        if (num<100) {
-            console.log(num);
-            alert('Number is less than 100. Try again.')
-        } else {
-            console.log(num);
+        if (num===null) {
+            console.log('You canceled');
+            alert('You canceled')
+        } else if (num>100) {
+            console.log('You enter a number greater than 100: ' + num);
             return;
+        } else {
+            console.log('Number is less than 100: ' + num + ' Try again.');
+            lastInput = num;
+            alert('Number is less than 100. Try again.')
         }
+    }
+    if (lastInput !== undefined) {
+        console.log ('You have reached the maximum number of attempts. Last value: ' + lastInput)
     }
 }
 inputNumber();
